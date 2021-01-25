@@ -1,0 +1,45 @@
+version: "3.8"
+
+networks:
+  backend:
+    name: bookshopdb_network
+    driver: bridge
+services:
+  bookshopdb:
+    image: mongo
+    hostname: mongo
+    container_name: mongo_bookshopdb
+    restart: always
+    ports:
+      - 27017-27019:27017-27019
+    networks:
+      - backend
+  productservice:
+    image: productservice
+    restart: always
+    build:
+      context: ./product-ms
+      dockerfile: Dockerfile-build
+    ports:
+      - 9001:9001
+    networks:
+      - backend
+  accountservice:
+    image: accountservice
+    build:
+      context: ./account-ms
+      dockerfile: Dockerfile-build
+    ports:
+      - 9002:9002
+    networks:
+      - backend
+  shoppingcartservice:
+    image: shoppingcartservice
+    build:
+      context: ./shoppingcart-ms
+      dockerfile: Dockerfile-build
+    ports:
+      - 9003:9003
+    networks:
+      - backend
+

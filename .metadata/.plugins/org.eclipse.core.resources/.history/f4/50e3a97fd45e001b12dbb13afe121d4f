@@ -1,0 +1,5 @@
+package com.bookshop.shoppingcartms.dto;
+
+public class BaseResponse {
+
+}

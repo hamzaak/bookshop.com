@@ -1,0 +1,61 @@
+package com.bookshop.shoppingcartms.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bookshop.shoppingcartms.api.IAccountServiceClient;
+import com.bookshop.shoppingcartms.api.IProductServiceClient;
+import com.bookshop.shoppingcartms.dto.AccountDTO;
+import com.bookshop.shoppingcartms.dto.ProductDTO;
+import com.bookshop.shoppingcartms.persistence.IShoppingCartRepository;
+import com.bookshop.shoppingcartms.persistence.model.ShoppingCart;
+import com.bookshop.shoppingcartms.service.IShoppingCartService;
+
+@Service
+public class ShoppingCartService implements IShoppingCartService {
+
+	@Autowired
+	private IShoppingCartRepository shoppingCartRepository;
+	
+	@Autowired
+	private IAccountServiceClient accountServiceClient;
+	
+	@Autowired
+	private IProductServiceClient productServiceClient;
+	
+	@Override
+	public List<ShoppingCart> add(ShoppingCart shoppingCart) {
+		AccountDTO account = accountServiceClient.getAccount(shoppingCart.getAccountId());
+		if(account.getId().isEmpty()) {
+			throw new RuntimeException("Acount not found");
+		}
+		
+		ProductDTO product =  productServiceClient.getProduct(shoppingCart.getProductId());
+		if(product.getId().isEmpty()) {
+			throw new RuntimeException("Product not found");
+		}
+		
+		if(product.getQuantity().compareTo(shoppingCart.getQuantity()) < 0) {
+			throw new RuntimeException("Product not found");
+		}
+		
+		shoppingCartRepository.save(shoppingCart);
+		
+		return shoppingCartRepository.findAll();
+	}
+
+	@Override
+	public List<ShoppingCart> remove(ShoppingCart shoppingCart) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ShoppingCart> clear(ShoppingCart shoppingCart) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

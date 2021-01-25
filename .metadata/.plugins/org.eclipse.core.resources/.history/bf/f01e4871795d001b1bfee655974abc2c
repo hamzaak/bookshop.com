@@ -1,0 +1,5 @@
+package com.bookshop.accountms.service.impl;
+
+public class AccountService {
+
+}

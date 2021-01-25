@@ -1,0 +1,31 @@
+package com.bookshop.shoppingcartms.service.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.bookshop.shoppingcartms.persistence.model.ShoppingCart;
+import com.bookshop.shoppingcartms.service.IShoppingCartService;
+
+@Service
+public class ShoppingCartService implements IShoppingCartService {
+
+	@Override
+	public List<ShoppingCart> add(ShoppingCart shoppingCart) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ShoppingCart> remove(ShoppingCart shoppingCart) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ShoppingCart> clear(ShoppingCart shoppingCart) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

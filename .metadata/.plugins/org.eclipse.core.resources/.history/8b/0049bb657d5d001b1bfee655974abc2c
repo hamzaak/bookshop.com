@@ -1,0 +1,5 @@
+package com.bookshop.shoppingcartms.persistence.model;
+
+public class Product {
+
+}

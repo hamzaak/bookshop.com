@@ -1,0 +1,51 @@
+package com.bookshop.shoppingcartms.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bookshop.shoppingcartms.api.IAccountServiceClient;
+import com.bookshop.shoppingcartms.dto.Account;
+import com.bookshop.shoppingcartms.persistence.IShoppingCartRepository;
+import com.bookshop.shoppingcartms.persistence.model.ShoppingCart;
+import com.bookshop.shoppingcartms.service.IShoppingCartService;
+
+@Service
+public class ShoppingCartService implements IShoppingCartService {
+
+	@Autowired
+	private IShoppingCartRepository shoppingCartRepository;
+	
+	@Autowired
+	private IAccountServiceClient accountServiceClient;
+	
+	@Override
+	public List<ShoppingCart> add(ShoppingCart shoppingCart) {
+		// TODO check product stock quantity
+		// TODO add product to shopping cart
+		
+		Account account = new Account();
+		account.setId(shoppingCart.getAccountId());
+		account = accountServiceClient.getAccount(account);
+		if(account.getId().isEmpty()) {
+			throw new RuntimeException("Acount not found");
+		}
+		
+		
+		return shoppingCartRepository.findAll();
+	}
+
+	@Override
+	public List<ShoppingCart> remove(ShoppingCart shoppingCart) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ShoppingCart> clear(ShoppingCart shoppingCart) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

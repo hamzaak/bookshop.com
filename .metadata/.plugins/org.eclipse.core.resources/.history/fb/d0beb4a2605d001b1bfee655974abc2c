@@ -1,0 +1,5 @@
+package com.bookshop.productms.persistence;
+
+public interface IProductRepository {
+
+}

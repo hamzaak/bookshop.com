@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-service
+  labels:
+    run: product-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: product-service
+  template:
+    metadata:
+      labels:
+        name: product-service
+        run: product-service
+    spec:
+      containers:
+      - name: product-service
+        image: hamzaak/bookshop-productms:1.0
+        ports:
+        - containerPort: 9001
+          hostPort: 9001

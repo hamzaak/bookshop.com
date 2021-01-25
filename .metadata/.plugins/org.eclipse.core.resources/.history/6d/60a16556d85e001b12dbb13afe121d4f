@@ -1,0 +1,5 @@
+server.port=9003
+spring.application.name=ShoppingCartMS 
+
+spring.data.mongodb.uri= mongodb://mongo_bookshopdb:27017/bookshopdb
+

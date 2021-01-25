@@ -1,0 +1,5 @@
+package com.bookshop.accountms.api;
+
+public class AccountController {
+
+}

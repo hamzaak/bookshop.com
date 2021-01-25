@@ -1,0 +1,5 @@
+package com.bookshop.accountms.persistence;
+
+public interface IAccountRepository {
+
+}

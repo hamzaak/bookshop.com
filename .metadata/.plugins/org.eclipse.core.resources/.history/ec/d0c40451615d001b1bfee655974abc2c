@@ -1,0 +1,5 @@
+package com.bookshop.productms.service;
+
+public interface IProductService {
+
+}

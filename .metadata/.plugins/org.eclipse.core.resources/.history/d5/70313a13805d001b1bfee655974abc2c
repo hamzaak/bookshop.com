@@ -1,0 +1,5 @@
+package com.bookshop.shoppingcartms.service.impl;
+
+public class ShoppingCartService {
+
+}

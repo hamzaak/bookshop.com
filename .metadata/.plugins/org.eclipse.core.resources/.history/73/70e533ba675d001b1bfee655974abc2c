@@ -1,0 +1,53 @@
+package com.bookshop.productms.service.impl;
+
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Service;
+
+import com.bookshop.productms.persistence.IProductRepository;
+import com.bookshop.productms.persistence.model.Product;
+import com.bookshop.productms.service.IProductService;
+
+@Service
+public class ProductService implements IProductService {
+	
+	@Autowired
+	private IProductRepository productRepository;
+	
+	@Autowired
+	private MongoTemplate mongoTemplate;
+
+	@Override
+	public List<Product> getAll() {
+		return mongoTemplate.findAll(Product.class);
+	}
+
+	@Override
+	public Product getProduct(Product product) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("id").is(product.getId()));
+		return mongoTemplate.findOne(query, Product.class);
+	}
+
+	@Override
+	public Product createProduct(Product product) {
+		product.setId(UUID.randomUUID().toString());
+		return mongoTemplate.insert(product);
+	}
+
+	@Override
+	public void deleteProduct(Product product) {
+		mongoTemplate.remove(product);
+	}
+
+	@Override
+	public Product updateProduct(Product product) {
+		return mongoTemplate.save(product);
+	}
+
+}

@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: product-service
+spec:
+  clusterIP: None
+  selector:
+    run: product-service
+  ports:
+    - port: 9001
+      targetPort: 9001

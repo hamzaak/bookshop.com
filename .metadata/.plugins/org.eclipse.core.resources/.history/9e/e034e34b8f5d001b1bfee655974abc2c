@@ -1,0 +1,11 @@
+package com.bookshop.shoppingcartms.persistence;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
+
+import com.bookshop.shoppingcartms.persistence.model.ShoppingCart;
+
+@Repository
+public interface IShoppingCartRepository extends MongoRepository<ShoppingCart, String>{
+
+}

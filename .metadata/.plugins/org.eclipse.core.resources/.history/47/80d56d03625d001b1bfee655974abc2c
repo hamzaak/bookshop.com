@@ -1,0 +1,9 @@
+package com.bookshop.productms.service;
+
+import com.bookshop.productms.persistence.model.Product;
+
+public interface IProductService {
+	
+	Product get(String id);
+
+}
