@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: accountservice
+spec:
+  clusterIP: None
+  selector:
+    run: accountservice
+  ports:
+    - port: 9002
+      targetPort: 9002

@@ -2,21 +2,21 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   labels:
-    name: mongo
+    name: bookshopdb
   name: mongo-controller
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: mongo
+        name: bookshopdb
     spec:
+      hostname: bookshopdb
       containers:
       - image: mongo:3.6
-        name: mongo
+        name: bookshopdb
         ports:
-        - name: mongo
-          containerPort: 27017
+        - containerPort: 27017
           hostPort: 27017
         volumeMounts:
         - mountPath: /data/db

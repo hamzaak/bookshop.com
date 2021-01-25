@@ -33,9 +33,7 @@ public class ShoppingCartService implements IShoppingCartService {
 	
 	@Override
 	public List<ShoppingCart> add(ShoppingCart shoppingCart) {
-		
-		this.checkAccount(shoppingCart.getAccountId());
-		
+		AccountDTO account = this.getAccount(shoppingCart.getAccountId());
 		ProductDTO product = this.getProduct(shoppingCart.getProductId());
 		
 		ShoppingCart originalShoppingCart = shoppingCartRepository.findByAccountIdAndProductId(shoppingCart.getAccountId(), shoppingCart.getProductId());
@@ -62,8 +60,8 @@ public class ShoppingCartService implements IShoppingCartService {
 	@Override
 	public List<ShoppingCart> remove(ShoppingCart shoppingCart) {
 		
-		this.checkAccount(shoppingCart.getAccountId());
-		this.checkProduct(shoppingCart.getProductId());
+		AccountDTO account = this.getAccount(shoppingCart.getAccountId());
+		ProductDTO product = this.getProduct(shoppingCart.getProductId());
 		
 		ShoppingCart originalShoppingCart = this.shoppingCartRepository.findByAccountIdAndProductId(shoppingCart.getAccountId(), shoppingCart.getProductId());
 		if(originalShoppingCart != null) {
@@ -77,23 +75,18 @@ public class ShoppingCartService implements IShoppingCartService {
 
 	@Override
 	public List<ShoppingCart> clear(String accountId) {
-		this.checkAccount(accountId);
+		AccountDTO account = this.getAccount(accountId);
 		this.shoppingCartRepository.deleteByAccountId(accountId);
 		return getCart(accountId);
 	}
 	
-	private void checkAccount(String accountId) {
+	private AccountDTO getAccount(String accountId) {
 		AccountDTO account = this.accountServiceClient.getAccount(accountId);
 		if(account == null) {
 			throw new CustomException("Acount not found!");
 		}
-	}
-
-	private void checkProduct(String productId) {
-		ProductDTO product =  this.productServiceClient.getProduct(productId);
-		if(product == null) {
-			throw new CustomException("Product not found!");
-		}
+		
+		return account;
 	}
 	
 	private ProductDTO getProduct(String productId) {

@@ -19,7 +19,7 @@ services:
     restart: always
     build:
       context: ./product-ms
-      dockerfile: Dockerfile-build
+      dockerfile: Dockerfile.build
     ports:
       - 9001:9001
     networks:
@@ -28,7 +28,7 @@ services:
     image: accountservice
     build:
       context: ./account-ms
-      dockerfile: Dockerfile-build
+      dockerfile: Dockerfile.build
     ports:
       - 9002:9002
     networks:
@@ -37,7 +37,7 @@ services:
     image: shoppingcartservice
     build:
       context: ./shoppingcart-ms
-      dockerfile: Dockerfile-build
+      dockerfile: Dockerfile.build
     ports:
       - 9003:9003
     networks:

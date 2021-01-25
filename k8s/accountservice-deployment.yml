@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: accountservice
+  labels:
+    run: accountservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: accountservice
+  template:
+    metadata:
+      labels:
+        name: accountservice
+        run: accountservice
+    spec:
+      hostname: accountservice
+      containers:
+      - name: accountservice
+        image: hamzaak/accountservice:1.0
+        ports:
+        - containerPort: 9002
+          hostPort: 9002

@@ -88,7 +88,16 @@ public class ShoppingCartService implements IShoppingCartService {
 			throw new CustomException("Acount not found!");
 		}
 	}
-
+	
+	private AccountDTO getAccount(String accountId) {
+		AccountDTO account = this.accountServiceClient.getAccount(accountId);
+		if(account == null) {
+			throw new CustomException("Acount not found!");
+		}
+		
+		return account;
+	}
+	
 	private void checkProduct(String productId) {
 		ProductDTO product =  this.productServiceClient.getProduct(productId);
 		if(product == null) {

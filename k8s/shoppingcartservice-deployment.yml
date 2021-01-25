@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shoppingcartservice
+  labels:
+    run: shoppingcartservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: shoppingcartservice
+  template:
+    metadata:
+      labels:
+        name: shoppingcartservice
+        run: shoppingcartservice
+    spec:
+      hostname: shoppingcartservice
+      containers:
+      - name: shoppingcartservice
+        image: hamzaak/shoppingcartservice:1.0
+        ports:
+        - containerPort: 9003
+          hostPort: 9003
