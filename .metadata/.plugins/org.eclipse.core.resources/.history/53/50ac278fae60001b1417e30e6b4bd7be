@@ -4,6 +4,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import com.bookshop.accountms.persistence.model.Account;
+import com.bookshop.shoppingcartms.persistence.model.ShoppingCartItem;
 
 @Repository
 public interface IAccountRepository extends MongoRepository<Account, String>{

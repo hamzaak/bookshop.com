@@ -7,5 +7,5 @@ import com.bookshop.accountms.persistence.model.Account;
 
 @Repository
 public interface IAccountRepository extends MongoRepository<Account, String>{
-	Account findByName(String name);
+
 }

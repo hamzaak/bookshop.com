@@ -10,8 +10,6 @@ public interface IAccountService {
 	
 	Account getAccount(String id);
 	
-	Account getAccountByName(String name);
-	
 	Account createAccount(Account account);
 	
 	void deleteAccount(String id);
