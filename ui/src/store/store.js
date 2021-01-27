@@ -10,11 +10,10 @@ export const store = new Vuex.Store({
     },
     mutations: {
         updateCart(state, items) {
-            state.cart = items;
+            state.cart = items.filter(function (el) { return el.quantity > 0; });
             
             state.totalPrice = 0
             for(var item of state.cart) {
-                console.log(JSON.stringify(item));
                 state.totalPrice = state.totalPrice + item.productPrice * item.quantity;
             }
         },
@@ -28,6 +27,8 @@ export const store = new Vuex.Store({
                 item.quantity = 1;
                 state.cart.push(item);
             }
+
+            state.cart = state.cart.filter(function (el) { return el.quantity > 0; });
 
             state.totalPrice = 0
             for(var i in state.cart) {
@@ -43,6 +44,8 @@ export const store = new Vuex.Store({
             if (original[0].quantity > 0) {
                 state.cart.push(original[0]);
             }
+            
+            state.cart = state.cart.filter(function (el) { return el.quantity > 0; });
 
             state.totalPrice = 0
             for(var i in state.cart) {

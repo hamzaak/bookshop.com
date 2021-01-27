@@ -1,4 +1,10 @@
-const BASE_IP = "192.168.64.3";
+let BASE_IP = "localhost"
+
+console.log(process.env.VUE_APP_BACKEND);
+
+if(process.env.VUE_APP_BACKEND == "kube") {
+    BASE_IP = "192.168.64.3"
+}
 
 const PRODUCT_MS_PORT = "9001";
 const ACCOUNT_MS_PORT = "9002";
