@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bookshop.shoppingcartms.persistence.model.ShoppingCart;
+import com.bookshop.shoppingcartms.persistence.model.ShoppingCartItem;
 import com.bookshop.shoppingcartms.service.IShoppingCartService;
 
 @RestController
@@ -23,22 +23,22 @@ public class ShoppingCartController {
 	private IShoppingCartService shoppingCartService;
 	
 	@GetMapping(value = "/get/{accountId}")
-	public ResponseEntity<List<ShoppingCart>> add(@PathVariable("accountId") String accountId) {
+	public ResponseEntity<List<ShoppingCartItem>> add(@PathVariable("accountId") String accountId) {
 		return ResponseEntity.ok(shoppingCartService.get(accountId));
 	}
 	
 	@PostMapping(value = "/add")
-	public ResponseEntity<List<ShoppingCart>> add(@RequestBody ShoppingCart shoppingCart) {
+	public ResponseEntity<List<ShoppingCartItem>> add(@RequestBody ShoppingCartItem shoppingCart) {
 		return ResponseEntity.ok(shoppingCartService.add(shoppingCart));
 	}
 	
 	@PostMapping(value = "/remove")
-	public ResponseEntity<List<ShoppingCart>> remove(@RequestBody ShoppingCart shoppingCart) {
+	public ResponseEntity<List<ShoppingCartItem>> remove(@RequestBody ShoppingCartItem shoppingCart) {
 		return ResponseEntity.ok(shoppingCartService.remove(shoppingCart));
 	}
 	
 	@DeleteMapping(value = "/clear/{accountId}")
-	public ResponseEntity<List<ShoppingCart>> clear(@PathVariable("accountId") String accountId) {
+	public ResponseEntity<List<ShoppingCartItem>> clear(@PathVariable("accountId") String accountId) {
 		return ResponseEntity.ok(shoppingCartService.clear(accountId));
 	}
 }

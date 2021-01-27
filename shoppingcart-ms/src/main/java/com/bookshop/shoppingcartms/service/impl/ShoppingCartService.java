@@ -1,6 +1,7 @@
 package com.bookshop.shoppingcartms.service.impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,15 +11,15 @@ import com.bookshop.shoppingcartms.api.IProductServiceClient;
 import com.bookshop.shoppingcartms.dto.AccountDTO;
 import com.bookshop.shoppingcartms.dto.ProductDTO;
 import com.bookshop.shoppingcartms.exception.CustomException;
-import com.bookshop.shoppingcartms.persistence.IShoppingCartRepository;
-import com.bookshop.shoppingcartms.persistence.model.ShoppingCart;
+import com.bookshop.shoppingcartms.persistence.IShoppingCartItemRepository;
+import com.bookshop.shoppingcartms.persistence.model.ShoppingCartItem;
 import com.bookshop.shoppingcartms.service.IShoppingCartService;
 
 @Service
 public class ShoppingCartService implements IShoppingCartService {
 
 	@Autowired
-	private IShoppingCartRepository shoppingCartRepository;
+	private IShoppingCartItemRepository shoppingCartItemRepository;
 	
 	@Autowired
 	private IAccountServiceClient accountServiceClient;
@@ -27,58 +28,60 @@ public class ShoppingCartService implements IShoppingCartService {
 	private IProductServiceClient productServiceClient;
 	
 	@Override
-	public List<ShoppingCart> get(String accountId) {
+	public List<ShoppingCartItem> get(String accountId) {
 		return getCart(accountId);
 	}
 	
 	@Override
-	public List<ShoppingCart> add(ShoppingCart shoppingCart) {
+	public List<ShoppingCartItem> add(ShoppingCartItem shoppingCartItem) {
 		
-		this.checkAccount(shoppingCart.getAccountId());
+		this.checkAccount(shoppingCartItem.getAccountId());
 		
-		ProductDTO product = this.getProduct(shoppingCart.getProductId());
+		ProductDTO product = this.getProduct(shoppingCartItem.getProductId());
 		
-		ShoppingCart originalShoppingCart = shoppingCartRepository.findByAccountIdAndProductId(shoppingCart.getAccountId(), shoppingCart.getProductId());
+		ShoppingCartItem originalShoppingCart = this.shoppingCartItemRepository.findByAccountIdAndProductId(
+				shoppingCartItem.getAccountId(), shoppingCartItem.getProductId());
 		if(originalShoppingCart != null) {
-			originalShoppingCart.setQuantity(originalShoppingCart.getQuantity().add(shoppingCart.getQuantity()));
+			originalShoppingCart.setQuantity(originalShoppingCart.getQuantity().add(shoppingCartItem.getQuantity()));
 			
 			if(product.getQuantity().compareTo(originalShoppingCart.getQuantity()) < 0) {
 				throw new CustomException("Insufficient product!");
 			}
 			
-			shoppingCartRepository.save(originalShoppingCart);
+			this.shoppingCartItemRepository.save(originalShoppingCart);
 		} else {
+			shoppingCartItem.setId(UUID.randomUUID().toString());
 			
-			if(product.getQuantity().compareTo(shoppingCart.getQuantity()) < 0) {
+			if(product.getQuantity().compareTo(shoppingCartItem.getQuantity()) < 0) {
 				throw new CustomException("Insufficient product!");
 			}
 			
-			this.shoppingCartRepository.insert(shoppingCart);
+			this.shoppingCartItemRepository.insert(shoppingCartItem);
 		}
 		
-		return getCart(shoppingCart.getAccountId());
+		return getCart(shoppingCartItem.getAccountId());
 	}
 
 	@Override
-	public List<ShoppingCart> remove(ShoppingCart shoppingCart) {
+	public List<ShoppingCartItem> remove(ShoppingCartItem shoppingCartItem) {
 		
-		this.checkAccount(shoppingCart.getAccountId());
-		this.checkProduct(shoppingCart.getProductId());
+		this.checkAccount(shoppingCartItem.getAccountId());
+		this.checkProduct(shoppingCartItem.getProductId());
 		
-		ShoppingCart originalShoppingCart = this.shoppingCartRepository.findByAccountIdAndProductId(shoppingCart.getAccountId(), shoppingCart.getProductId());
+		ShoppingCartItem originalShoppingCart = this.shoppingCartItemRepository.findByAccountIdAndProductId(shoppingCartItem.getAccountId(), shoppingCartItem.getProductId());
 		if(originalShoppingCart != null) {
-			originalShoppingCart.setQuantity(originalShoppingCart.getQuantity().subtract(shoppingCart.getQuantity()));
+			originalShoppingCart.setQuantity(originalShoppingCart.getQuantity().subtract(shoppingCartItem.getQuantity()));
 			
-			this.shoppingCartRepository.save(originalShoppingCart);
+			this.shoppingCartItemRepository.save(originalShoppingCart);
 		}
 		
-		return getCart(shoppingCart.getAccountId());
+		return getCart(shoppingCartItem.getAccountId());
 	}
 
 	@Override
-	public List<ShoppingCart> clear(String accountId) {
+	public List<ShoppingCartItem> clear(String accountId) {
 		this.checkAccount(accountId);
-		this.shoppingCartRepository.deleteByAccountId(accountId);
+		this.shoppingCartItemRepository.deleteByAccountId(accountId);
 		return getCart(accountId);
 	}
 	
@@ -105,9 +108,9 @@ public class ShoppingCartService implements IShoppingCartService {
 		return product;
 	}
 	
-	private List<ShoppingCart> getCart(String accountId) {
-		List<ShoppingCart> shoppingCartItems = this.shoppingCartRepository.findByAccountId(accountId);
-		for(ShoppingCart cart: shoppingCartItems) {
+	private List<ShoppingCartItem> getCart(String accountId) {
+		List<ShoppingCartItem> shoppingCartItems = this.shoppingCartItemRepository.findByAccountId(accountId);
+		for(ShoppingCartItem cart: shoppingCartItems) {
 			ProductDTO productDTO = this.productServiceClient.getProduct(cart.getProductId());
 			cart.setProductTitle(productDTO.getTitle());
 			cart.setProductDescription(productDTO.getDescription());

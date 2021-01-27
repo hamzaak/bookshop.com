@@ -1,8 +1,8 @@
 package com.bookshop.accountms.service.impl;
 
 import java.util.List;
+import java.util.UUID;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,17 +22,18 @@ public class AccountService implements IAccountService {
 	}
 
 	@Override
-	public Account getAccount(ObjectId id) {
+	public Account getAccount(String id) {
 		return accountRepository.findById(id).get();
 	}
 
 	@Override
 	public Account createAccount(Account account) {
+		account.setId(UUID.randomUUID().toString());
 		return accountRepository.save(account);
 	}
 
 	@Override
-	public void deleteAccount(ObjectId id) {
+	public void deleteAccount(String id) {
 		accountRepository.deleteById(id);
 	}
 

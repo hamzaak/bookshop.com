@@ -1,0 +1,4 @@
+server.port=9002
+spring.application.name=AccountMS 
+
+spring.data.mongodb.uri= mongodb://bookshopdb:27017/dev

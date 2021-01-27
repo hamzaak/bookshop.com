@@ -3,8 +3,6 @@ package com.bookshop.shoppingcartms.dto;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import org.bson.types.ObjectId;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class ProductDTO {
-	private ObjectId id;
+	private String id;
 	private String title;
 	private String description;
 	private BigDecimal price;

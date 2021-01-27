@@ -2,7 +2,6 @@ package com.bookshop.productms.api;
 
 import java.util.List;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,7 +29,7 @@ public class ProductController {
 	}
 	
 	@GetMapping(value = "/get/{id}")
-	public ResponseEntity<Product> getProduct(@PathVariable("id") ObjectId id) {
+	public ResponseEntity<Product> getProduct(@PathVariable("id") String id) {
 		return ResponseEntity.ok(productService.getProduct(id));
 	}
 	
@@ -45,7 +44,7 @@ public class ProductController {
 	}
 	
 	@DeleteMapping(value = "/delete/{id}")
-	public ResponseEntity<String> deleteProduct(@PathVariable("id") ObjectId id) {
+	public ResponseEntity<String> deleteProduct(@PathVariable("id") String id) {
 		productService.deleteProduct(id);
 		return ResponseEntity.ok("Product has been deleted successfully");
 	}

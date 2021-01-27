@@ -18,7 +18,7 @@ spec:
       hostname: accountservice
       containers:
       - name: accountservice
-        image: hamzaak/accountservice:1.0
+        image: hamzaak/accountservice:latest
         ports:
         - containerPort: 9002
           hostPort: 9002

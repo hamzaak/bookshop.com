@@ -2,16 +2,16 @@ package com.bookshop.shoppingcartms.service;
 
 import java.util.List;
 
-import com.bookshop.shoppingcartms.persistence.model.ShoppingCart;
+import com.bookshop.shoppingcartms.persistence.model.ShoppingCartItem;
 
 public interface IShoppingCartService {
 	
-	List<ShoppingCart> get(String accountId);
+	List<ShoppingCartItem> get(String accountId);
 	
-	List<ShoppingCart> add(ShoppingCart shoppingCart);
+	List<ShoppingCartItem> add(ShoppingCartItem shoppingCartItem);
 	
-	List<ShoppingCart> remove(ShoppingCart shoppingCart);
+	List<ShoppingCartItem> remove(ShoppingCartItem shoppingCartItem);
 	
-	List<ShoppingCart> clear(String accountId);
+	List<ShoppingCartItem> clear(String accountId);
 	
 }

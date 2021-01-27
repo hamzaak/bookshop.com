@@ -2,7 +2,6 @@ package com.bookshop.accountms.api;
 
 import java.util.List;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +22,7 @@ public class AccountController {
 	}
 	
 	@GetMapping(value = "/get/{id}")
-	public ResponseEntity<Account> getAccount(@PathVariable("id") ObjectId id) {
+	public ResponseEntity<Account> getAccount(@PathVariable("id") String id) {
 		return ResponseEntity.ok(accountService.getAccount(id));
 	}
 	
@@ -38,7 +37,7 @@ public class AccountController {
 	}
 	
 	@DeleteMapping(value = "/delete/{id}")
-	public ResponseEntity<String> deleteAccount(@PathVariable("id") ObjectId id) {
+	public ResponseEntity<String> deleteAccount(@PathVariable("id") String id) {
 		accountService.deleteAccount(id);
 		return ResponseEntity.ok("Account has been deleted successfully");
 	}

@@ -18,7 +18,7 @@ spec:
       hostname: shoppingcartservice
       containers:
       - name: shoppingcartservice
-        image: hamzaak/shoppingcartservice:1.0
+        image: hamzaak/shoppingcartservice:latest
         ports:
         - containerPort: 9003
           hostPort: 9003

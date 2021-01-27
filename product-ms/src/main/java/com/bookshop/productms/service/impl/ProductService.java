@@ -1,8 +1,8 @@
 package com.bookshop.productms.service.impl;
 
 import java.util.List;
+import java.util.UUID;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,17 +22,18 @@ public class ProductService implements IProductService {
 	}
 
 	@Override
-	public Product getProduct(ObjectId id) {
+	public Product getProduct(String id) {
 		return productRepository.findById(id).get();
 	}
 
 	@Override
 	public Product createProduct(Product product) {
+		product.setId(UUID.randomUUID().toString());
 		return productRepository.save(product);
 	}
 
 	@Override
-	public void deleteProduct(ObjectId id) {
+	public void deleteProduct(String id) {
 		productRepository.deleteById(id);
 	}
 

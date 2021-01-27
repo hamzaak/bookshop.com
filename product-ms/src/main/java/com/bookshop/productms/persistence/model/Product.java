@@ -3,7 +3,6 @@ package com.bookshop.productms.persistence.model;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -18,8 +17,8 @@ import lombok.Setter;
 @Setter
 public class Product {
 	@Id
-	@Field(name = "product_id")
-	private ObjectId id;
+	@Field(name = "id")
+	private String id;
 	
 	@Field(name = "title")
 	private String title;

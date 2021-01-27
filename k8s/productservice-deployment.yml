@@ -18,7 +18,7 @@ spec:
       hostname: productservice
       containers:
       - name: productservice
-        image: hamzaak/productservice:1.0
+        image: hamzaak/productservice:latest
         ports:
         - containerPort: 9001
           hostPort: 9001

@@ -1,7 +1,5 @@
 package com.bookshop.shoppingcartms.dto;
 
-import org.bson.types.ObjectId;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +8,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class AccountDTO {
-	private ObjectId id;
+	private String id;
 	private String name;
 }
