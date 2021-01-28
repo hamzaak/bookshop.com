@@ -16,7 +16,9 @@
             </thead>
             <tbody>
                 <tr v-for="i of cart" :key="i.id">
-                    <td class="align-middle">{{ i.productTitle }}</td>
+                    <td class="align-middle">
+                       <strong>{{ i.productTitle }}</strong>
+                    </td>
                     <td class="align-middle">{{ i.productDescription }}</td>
                     <td class="align-middle">${{formatPrice(i.productPrice * i.quantity)}}</td>
                     <td class="align-middle" style="width:15px">
@@ -40,10 +42,9 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { API_CART_URL } from "@/constants/config";
 import { mapState } from 'vuex'
-import Navbar from './Navbar.vue'
+import Navbar from '@/components/Navbar.vue'
+import cartClient from "@/api/cartClient";
 
 export default {
   name: "Cart",
@@ -56,40 +57,46 @@ export default {
         accountId: localStorage.getItem('accountId')
     };
   },
+  created() {
+    if(this.accountId == null) {
+        this.$router.push({path: 'login'});
+    }
+  },
   methods: {
-      formatPrice(value) {
+    formatPrice(value) {
         let val = (value/1).toFixed(2).replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-        },
-      increase(item) {
-          var shoppingCartItem = {
+    },
+    increase(item) {
+        var shoppingCartItem = {
             accountId: this.accountId,
             productId: item.productId,
             quantity: 1 };
 
-        axios.post(API_CART_URL + `/add`, shoppingCartItem)
-            .then(response => {
-                console.log(response);
-                this.$store.commit('updateCart', response.data);
+        cartClient.add(shoppingCartItem)
+            .then(data => {
+                console.log(JSON.stringify(data));
+                this.$store.commit('updateCart', data);
             })
             .catch(e => {
                 console.log(e);
             })
-      },
-      decrease(item) {
-          var shoppingCartItem = {
+    },
+    decrease(item) {
+        var shoppingCartItem = {
             accountId: this.accountId,
             productId: item.productId,
             quantity: 1 };
-          axios.post(API_CART_URL + `/remove`, shoppingCartItem)
-                .then(response => {
-                    console.log(response);
-                    this.$store.commit('updateCart', response.data);
-                })
-                .catch(e => {
-                    console.log(e);
-                })
-      }
+        
+        cartClient.remove(shoppingCartItem)
+            .then(data => {
+                console.log(JSON.stringify(data));
+                this.$store.commit('updateCart', data);
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    }
   },
 };
 </script>

@@ -26,11 +26,11 @@
 
 <script>
 
-import axios from 'axios';
-import { API_ACCOUNTS_URL, API_PRODUCTS_URL } from "@/constants/config";
+import accountClient from "@/api/accountClient";
+import productClient from "@/api/productClient";
 
 export default {
-  name: "SignIn",
+  name: "Login",
   data() {
     return {
       accountName: 'John Doe',
@@ -101,26 +101,26 @@ export default {
     }
   },
   created() {
-    axios.get(API_ACCOUNTS_URL + `/get/all`)
-        .then(response => {
+      accountClient.getAll()
+        .then(data => {
             // populate all data
-            if(response.data.length == 0) {
+            if(data.length == 0) {
                 this.populateAccounts(0);
             } else {
                 this.loading=false
             }
         })
         .catch(e => {
-        this.errors.push(e)
+            console.log(e);
         })
   },
   methods: {
     signIn() {
         if(this.accountName.trim() != '') {
-            axios.get(API_ACCOUNTS_URL+`/getbyname/`+this.accountName)
-                .then(response => {
-                    localStorage.setItem('accountId', response.data.id);
-                    localStorage.setItem('accountName', response.data.name);
+            accountClient.getByName(this.accountName)
+                .then(data => {
+                    localStorage.setItem('accountId', data.id);
+                    localStorage.setItem('accountName', data.name);
                     
                     this.$router.push({path: 'products'});
                 })
@@ -131,9 +131,9 @@ export default {
     },
     populateAccounts(index){
         if(this.accounts.length > index) {
-            axios.put(API_ACCOUNTS_URL + `/create`, this.accounts[index])
-                .then(response => {
-                    console.log(response)
+            accountClient.create(this.accounts[index])
+                .then(data => {
+                    console.log(JSON.stringify(data))
                     index++
                     this.populateAccounts(index)
                 })
@@ -146,9 +146,9 @@ export default {
     },
     populateProducts(index){
         if(this.products.length > index) {
-            axios.put(API_PRODUCTS_URL + `/create`, this.products[index])
-                .then(response => {
-                    console.log(response)
+            productClient.create(this.products[index])
+                .then(data => {
+                    console.log(JSON.stringify(data))
                     index++
                     this.populateProducts(index)
                 })

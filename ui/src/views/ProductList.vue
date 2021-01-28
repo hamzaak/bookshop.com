@@ -30,12 +30,12 @@
 
 <script>
 
-import axios from 'axios';
-import Navbar from './Navbar.vue'
-import { API_PRODUCTS_URL, API_CART_URL } from "@/constants/config";
+import Navbar from '@/components/Navbar.vue'
+import productClient from "@/api/productClient";
+import cartClient from "@/api/cartClient";
 
 export default {
-  name: "Products",
+  name: "ProductList",
   components: {
     Navbar
   },
@@ -47,15 +47,15 @@ export default {
   },
   created() {
     if(this.accountId == null) {
-        this.$router.push({path: 'signIn'});
+        this.$router.push({path: 'login'});
     }
 
-    axios.get(API_PRODUCTS_URL + `/get/all`)
-        .then(response => {
-        this.products = response.data
+    productClient.getAll()
+        .then(data => {
+            this.products = data
         })
         .catch(e => {
-        this.errors.push(e)
+            console.log(e)
         })
   },
   methods: {
@@ -69,10 +69,10 @@ export default {
             productId: product.id,
             quantity: 1 };
 
-        axios.post(API_CART_URL + `/add`, shoppingCartItem)
-            .then(response => {
-                console.log(response);
-                this.$store.commit('updateCart', response.data);
+        cartClient.add(shoppingCartItem)
+            .then(data => {
+                console.log(JSON.stringify(data));
+                this.$store.commit('updateCart', data);
             })
             .catch(e => {
                 console.log(e);

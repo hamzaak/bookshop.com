@@ -2,18 +2,19 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import { store } from './store/store'
-import Products from './components/Products.vue'
-import Cart from './components/Cart.vue'
-import SignIn from './components/SignIn.vue'
+import Login from './views/Login.vue'
+import ProductList from './views/ProductList.vue'
+import Cart from './views/Cart.vue'
+
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes: [
-    { path: '/', component: SignIn },
-    { path: '/signIn', component: SignIn },
-    { path: '/products', component: Products },
+    { path: '/', component: Login },
+    { path: '/login', component: Login },
+    { path: '/products', component: ProductList },
     { path: '/cart', component: Cart }
   ]
 })

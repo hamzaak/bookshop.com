@@ -31,9 +31,9 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { API_CART_URL } from "@/constants/config";
+
 import { mapState } from 'vuex'
+import cartClient from "@/api/cartClient"
 
 export default {
   name: 'Navbar',
@@ -47,9 +47,9 @@ export default {
     }
   },
   created() {
-    axios.get(API_CART_URL + `/get/` + this.accountId)
-        .then(response => {
-            this.$store.commit('updateCart', response.data);
+    cartClient.get(this.accountId)
+        .then(data => {
+            this.$store.commit('updateCart', data);
         })
         .catch(e => {
             console.log(e);
