@@ -2,7 +2,9 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <i class="bi bi-bookmark-star-fill text-danger"></i> bookshop.com</a>
+            <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <strong>Bookshop</strong>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -69,5 +71,12 @@ sup {
     font-size: 75%;
     line-height: 0;
     vertical-align: baseline;
+}
+.q-icon {
+    font-size: 2rem;
+    vertical-align: middle;
+}
+.q-icon::before {
+    vertical-align: middle;
 }
 </style>

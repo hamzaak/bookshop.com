@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookshopui
+  labels:
+    run: bookshopui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: bookshopui
+  template:
+    metadata:
+      labels:
+        name: bookshopui
+        run: bookshopui
+    spec:
+      hostname: bookshopui
+      containers:
+      - name: bookshopui
+        image: hamzaak/bookshop-ui:latest
+        ports:
+        - containerPort: 8080
+          hostPort: 8080

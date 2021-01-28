@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: bookshopui
+spec:
+  clusterIP: None
+  selector:
+    run: bookshopui
+  ports:
+    - port: 8080
+      targetPort: 8080
