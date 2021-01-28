@@ -13,7 +13,7 @@
             </thead>
             <tbody>
                 <tr v-for="p of products" :key="p.id">
-                <td>{{p.title}}</td>
+                <td><strong>{{p.title}}</strong></td>
                 <td>{{p.description}}</td>
                 <td align="right">
                     <button class="btn btn-danger" type="button" @click="buy(p)">
