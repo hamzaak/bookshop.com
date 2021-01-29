@@ -6,7 +6,7 @@ networks:
     driver: bridge
 services:
   bookshopdb:
-    image: mongo
+    image: mongo:latest
     hostname: bookshopdb
     container_name: bookshopdb
     restart: always
@@ -14,6 +14,24 @@ services:
       - 27017-27019:27017-27019
     networks:
       - backend
+  minioserver:
+    image: bitnami/minio:latest
+    hostname: minioserver
+    container_name: minioserver
+    restart: always
+    environment: 
+      MINIO_ACCESS_KEY: BookshopUser
+      MINIO_SECRET_KEY: BookshopPass1234
+      MINIO_DEFAULT_BUCKETS: bookshop:public
+    ports:
+      - 9000:9000
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
   productservice:
     image: productservice
     hostname: productservice
@@ -26,6 +44,9 @@ services:
       - 9001:9001
     networks:
       - backend
+    depends_on:
+      minioserver:
+        condition: service_healthy
   accountservice:
     image: accountservice
     hostname: accountservice

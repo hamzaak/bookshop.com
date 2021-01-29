@@ -1,0 +1,15 @@
+/Users/hamza/Documents/workspace/bookshop.com/shoppingcart-ms/src/main/java/com/bookshop/shoppingcartms/ShoppingcartMsApplication.java
+/Users/hamza/Documents/workspace/bookshop.com/shoppingcart-ms/src/main/java/com/bookshop/shoppingcartms/dto/ProductDTO.java
+/Users/hamza/Documents/workspace/bookshop.com/shoppingcart-ms/src/main/java/com/bookshop/shoppingcartms/dto/BaseResponse.java
+/Users/hamza/Documents/workspace/bookshop.com/shoppingcart-ms/src/main/java/com/bookshop/shoppingcartms/service/IShoppingCartService.java
+/Users/hamza/Documents/workspace/bookshop.com/shoppingcart-ms/src/main/java/com/bookshop/shoppingcartms/api/IProductServiceClient.java
+/Users/hamza/Documents/workspace/bookshop.com/shoppingcart-ms/src/main/java/com/bookshop/shoppingcartms/persistence/model/ShoppingCartItem.java
+/Users/hamza/Documents/workspace/bookshop.com/shoppingcart-ms/src/main/java/com/bookshop/shoppingcartms/api/ShoppingCartController.java
+/Users/hamza/Documents/workspace/bookshop.com/shoppingcart-ms/src/main/java/com/bookshop/shoppingcartms/api/SwaggerConfig.java
+/Users/hamza/Documents/workspace/bookshop.com/shoppingcart-ms/src/main/java/com/bookshop/shoppingcartms/persistence/IShoppingCartItemRepository.java
+/Users/hamza/Documents/workspace/bookshop.com/shoppingcart-ms/src/main/java/com/bookshop/shoppingcartms/service/impl/ShoppingCartService.java
+/Users/hamza/Documents/workspace/bookshop.com/shoppingcart-ms/src/main/java/com/bookshop/shoppingcartms/exception/CustomException.java
+/Users/hamza/Documents/workspace/bookshop.com/shoppingcart-ms/src/main/java/com/bookshop/shoppingcartms/api/CorsFilter.java
+/Users/hamza/Documents/workspace/bookshop.com/shoppingcart-ms/src/main/java/com/bookshop/shoppingcartms/api/ErrorHandler.java
+/Users/hamza/Documents/workspace/bookshop.com/shoppingcart-ms/src/main/java/com/bookshop/shoppingcartms/api/IAccountServiceClient.java
+/Users/hamza/Documents/workspace/bookshop.com/shoppingcart-ms/src/main/java/com/bookshop/shoppingcartms/dto/AccountDTO.java

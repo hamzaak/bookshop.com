@@ -1,0 +1,11 @@
+META-INF/spring-configuration-metadata.json
+com/bookshop/productms/persistence/model/Product$ProductBuilder.class
+com/bookshop/productms/service/impl/ProductService.class
+com/bookshop/productms/api/CorsFilter.class
+com/bookshop/productms/service/IProductService.class
+com/bookshop/productms/ProductMsApplication.class
+com/bookshop/productms/api/ProductController.class
+com/bookshop/productms/api/SwaggerConfig.class
+com/bookshop/productms/config/MinioConf.class
+com/bookshop/productms/persistence/model/Product.class
+com/bookshop/productms/persistence/IProductRepository.class

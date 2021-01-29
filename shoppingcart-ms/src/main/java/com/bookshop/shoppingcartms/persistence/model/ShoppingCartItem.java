@@ -43,4 +43,7 @@ public class ShoppingCartItem {
 	@Transient
 	private BigInteger productQuantity;
 	
+	@Transient
+	private String productPicUrl;
+	
 }

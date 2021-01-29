@@ -116,6 +116,7 @@ public class ShoppingCartService implements IShoppingCartService {
 			cart.setProductDescription(productDTO.getDescription());
 			cart.setProductPrice(productDTO.getPrice());
 			cart.setProductQuantity(productDTO.getQuantity());
+			cart.setProductPicUrl(productDTO.getPicUrl());
 		}
 		return shoppingCartItems;
 	}

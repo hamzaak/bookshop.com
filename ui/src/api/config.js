@@ -14,4 +14,4 @@ const API_PRODUCTS_URL = "http://" + BASE_IP + ":" + PRODUCT_MS_PORT + "/api/pro
 const API_ACCOUNTS_URL = "http://" + BASE_IP + ":" + ACCOUNT_MS_PORT + "/api/accounts"
 const API_CART_URL = "http://" + BASE_IP + ":" + CART_MS_PORT + "/api/shoppingcart"
 
-export { API_PRODUCTS_URL, API_ACCOUNTS_URL, API_CART_URL };
+export { BASE_IP, API_PRODUCTS_URL, API_ACCOUNTS_URL, API_CART_URL };

@@ -1,0 +1,21 @@
+version: "3.8"
+
+networks:
+  backend:
+    name: bookshop_network
+    driver: bridge
+services:
+  minioserver:
+    image: bitnami/minio:latest
+    hostname: minioserver
+    container_name: minioserver
+    restart: always
+    environment: 
+      MINIO_ACCESS_KEY: BookshopUser
+      MINIO_SECRET_KEY: BookshopPass1234
+      MINIO_DEFAULT_BUCKETS: bookshop:public
+    ports:
+      - 9000:9000
+    networks:
+      - backend
+

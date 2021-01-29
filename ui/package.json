@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --mode kube",
+    "serve": "vue-cli-service serve --mode docker",
     "build-kube": "vue-cli-service build --mode kube",
     "build-docker": "vue-cli-service build --mode docker",
     "lint": "vue-cli-service lint"

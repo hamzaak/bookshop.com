@@ -31,4 +31,7 @@ public class Product {
 	
 	@Field(name = "quantity")
 	private BigInteger quantity;
+	
+	@Field(name = "picUrl")
+	private String picUrl;
 }

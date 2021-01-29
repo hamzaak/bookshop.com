@@ -1,0 +1,9 @@
+/Users/hamza/Documents/workspace/bookshop.com/product-ms/src/main/java/com/bookshop/productms/api/ProductController.java
+/Users/hamza/Documents/workspace/bookshop.com/product-ms/src/main/java/com/bookshop/productms/api/SwaggerConfig.java
+/Users/hamza/Documents/workspace/bookshop.com/product-ms/src/main/java/com/bookshop/productms/persistence/IProductRepository.java
+/Users/hamza/Documents/workspace/bookshop.com/product-ms/src/main/java/com/bookshop/productms/service/impl/ProductService.java
+/Users/hamza/Documents/workspace/bookshop.com/product-ms/src/main/java/com/bookshop/productms/ProductMsApplication.java
+/Users/hamza/Documents/workspace/bookshop.com/product-ms/src/main/java/com/bookshop/productms/config/MinioConf.java
+/Users/hamza/Documents/workspace/bookshop.com/product-ms/src/main/java/com/bookshop/productms/service/IProductService.java
+/Users/hamza/Documents/workspace/bookshop.com/product-ms/src/main/java/com/bookshop/productms/persistence/model/Product.java
+/Users/hamza/Documents/workspace/bookshop.com/product-ms/src/main/java/com/bookshop/productms/api/CorsFilter.java

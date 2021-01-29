@@ -1,0 +1,5 @@
+package com.bookshop.productms.config;
+
+public class MinioConf {
+
+}

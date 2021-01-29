@@ -3,23 +3,35 @@
       <Navbar />
       <div class="page-content">
         <h2>Shopping Cart</h2>
+       
+
         <table class="table" v-if="cart && cart.length">
             <thead>
                 <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">Price</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="i of cart" :key="i.id">
-                    <td class="align-middle">
-                       <strong>{{ i.productTitle }}</strong>
+                    <td>
+                        <img height="70" v-bind:src=formatPicUrl(i.productPicUrl) v-bind:alt=i.productTitle>
                     </td>
-                    <td class="align-middle">{{ i.productDescription }}</td>
+                    <td class="align-middle">
+                        <p class="q-text">
+                            <strong>{{ i.productTitle }}</strong>
+                        </p>
+                    </td>
+                    <td class="align-middle">
+                        <p class="q-text">
+                            {{ i.productDescription }}
+                        </p>
+                    </td>
                     <td class="align-middle">${{formatPrice(i.productPrice * i.quantity)}}</td>
                     <td class="align-middle" style="width:15px">
                         <i class="bi bi-dash-circle-fill text-danger q-icon" @click="decrease(i)"></i>
@@ -44,7 +56,8 @@
 <script>
 import { mapState } from 'vuex'
 import Navbar from '@/components/Navbar.vue'
-import cartClient from "@/api/cartClient";
+import cartClient from "@/api/cartClient"
+import { BASE_IP } from "@/api/config"
 
 export default {
   name: "Cart",
@@ -63,6 +76,9 @@ export default {
     }
   },
   methods: {
+    formatPicUrl(relativeUrl) {
+        return "http://" + BASE_IP + ":9000/" + relativeUrl;
+    },
     formatPrice(value) {
         let val = (value/1).toFixed(2).replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
@@ -117,4 +133,12 @@ export default {
 .q-input {
     width: 9rem;
 }
+.q-text {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 0rem;
+    }
 </style>
