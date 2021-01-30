@@ -24,6 +24,9 @@
                 <i class="bi bi-cart4"></i>
                 <sup><span class="badge bg-danger">{{cart.length}}</span></sup>
             </button>
+            <button class="btn btn-outline-danger" style="margin-left: 0.5rem;" type="button" @click="signOut()">
+                Sign Out
+            </button>
         </form>
         </div>
     </div>
@@ -33,7 +36,7 @@
 <script>
 
 import { mapState } from 'vuex'
-import cartClient from "@/api/cartClient"
+import cartClient from '@/api/cartClient'
 
 export default {
   name: 'Navbar',
@@ -49,21 +52,26 @@ export default {
   created() {
     cartClient.get(this.accountId)
         .then(data => {
-            this.$store.commit('updateCart', data);
+            this.$store.commit('updateCart', data)
         })
         .catch(e => {
-            console.log(e);
+            console.log(e)
         })
   },
   methods: {
       goCart() {
-          this.$router.push({ path: 'cart' });
+          this.$router.push({ path: 'cart' })
+      },
+      signOut() {
+          localStorage.removeItem('accountId')
+          localStorage.removeItem('accountName')
+
+          this.$router.push({ path: 'login' })
       }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 sup {
     top: -.5em;

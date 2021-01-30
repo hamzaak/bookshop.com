@@ -56,15 +56,15 @@
 <script>
 import { mapState } from 'vuex'
 import Navbar from '@/components/Navbar.vue'
-import cartClient from "@/api/cartClient"
-import { BASE_IP } from "@/api/config"
+import cartClient from '@/api/cartClient'
+import { BASE_IP } from '@/api/config'
 
 export default {
-  name: "Cart",
+  name: 'Cart',
   components: {
     Navbar
   },
-  computed: mapState(["cart", "totalPrice"]),
+  computed: mapState(['cart', 'totalPrice']),
   data() {
     return {
         accountId: localStorage.getItem('accountId')
@@ -72,52 +72,51 @@ export default {
   },
   created() {
     if(this.accountId == null) {
-        this.$router.push({path: 'login'});
+        this.$router.push({path: 'login'})
     }
   },
   methods: {
     formatPicUrl(relativeUrl) {
-        return "http://" + BASE_IP + ":9000/" + relativeUrl;
+        return 'http://' + BASE_IP + ':9000/' + relativeUrl
     },
     formatPrice(value) {
         let val = (value/1).toFixed(2).replace('.', ',')
-        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
     },
     increase(item) {
         var shoppingCartItem = {
             accountId: this.accountId,
             productId: item.productId,
-            quantity: 1 };
+            quantity: 1 }
 
         cartClient.add(shoppingCartItem)
             .then(data => {
-                console.log(JSON.stringify(data));
-                this.$store.commit('updateCart', data);
+                console.log(JSON.stringify(data))
+                this.$store.commit('updateCart', data)
             })
             .catch(e => {
-                console.log(e);
+                console.log(e)
             })
     },
     decrease(item) {
         var shoppingCartItem = {
             accountId: this.accountId,
             productId: item.productId,
-            quantity: 1 };
+            quantity: 1 }
         
         cartClient.remove(shoppingCartItem)
             .then(data => {
                 console.log(JSON.stringify(data));
-                this.$store.commit('updateCart', data);
+                this.$store.commit('updateCart', data)
             })
             .catch(e => {
-                console.log(e);
+                console.log(e)
             })
     }
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .page-content {
   padding: 40px;

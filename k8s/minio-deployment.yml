@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minioserver
+  labels:
+    run: minioserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: minioserver
+  template:
+    metadata:
+      labels:
+        name: minioserver
+        run: minioserver
+    spec:
+      hostname: minioserver
+      containers:
+        - name: minioserver
+          image: bitnami/minio:latest
+          env:
+            - name: MINIO_ACCESS_KEY
+              value: "BookshopUser"
+            - name: MINIO_SECRET_KEY
+              value: "BookshopPass1234"
+            - name: MINIO_DEFAULT_BUCKETS
+              value: "bookshop:public"
+          ports:
+            - containerPort: 9000
+              hostPort: 9000

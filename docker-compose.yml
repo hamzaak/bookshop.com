@@ -69,4 +69,15 @@ services:
       - 9003:9003
     networks:
       - backend
+  ui:
+    image: bookshopui
+    hostname: bookshopui
+    container_name: bookshop_ui
+    build:
+      context: ./ui
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    networks:
+      - backend
 

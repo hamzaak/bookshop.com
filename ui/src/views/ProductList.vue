@@ -25,12 +25,12 @@
 <script>
 
 import Navbar from '@/components/Navbar.vue'
-import productClient from "@/api/productClient";
-import cartClient from "@/api/cartClient";
-import { BASE_IP } from "@/api/config";
+import productClient from '@/api/productClient'
+import cartClient from '@/api/cartClient'
+import { BASE_IP } from '@/api/config'
 
 export default {
-  name: "ProductList",
+  name: 'ProductList',
   components: {
     Navbar
   },
@@ -42,7 +42,7 @@ export default {
   },
   created() {
     if(this.accountId == null) {
-        this.$router.push({path: 'login'});
+        this.$router.push({path: 'login'})
     }
 
     productClient.getAll()
@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     formatPicUrl(relativeUrl) {
-        return "http://" + BASE_IP + ":9000/" + relativeUrl;
+        return 'http://' + BASE_IP + ':9000/' + relativeUrl
     },
     formatPrice(value) {
         let val = (value/1).toFixed(2).replace('.', ',')
@@ -65,15 +65,15 @@ export default {
         var shoppingCartItem = {
             accountId: this.accountId,
             productId: product.id,
-            quantity: 1 };
+            quantity: 1 }
 
         cartClient.add(shoppingCartItem)
             .then(data => {
-                console.log(JSON.stringify(data));
-                this.$store.commit('updateCart', data);
+                console.log(JSON.stringify(data))
+                this.$store.commit('updateCart', data)
             })
             .catch(e => {
-                console.log(e);
+                console.log(e)
             })
     }
 }
