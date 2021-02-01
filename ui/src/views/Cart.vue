@@ -2,16 +2,14 @@
   <div>
       <Navbar />
       <div class="page-content">
-        <h2>Shopping Cart</h2>
-       
-
+        <h2>{{ $w('shopping_cart') }}</h2>
         <table class="table" v-if="cart && cart.length">
             <thead>
                 <tr>
                     <th scope="col"></th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Price</th>
+                    <th scope="col">{{ $w('title') }}</th>
+                    <th scope="col">{{ $w('description') }}</th>
+                    <th scope="col">{{ $w('price') }}</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                     <th scope="col"></th>
@@ -47,7 +45,7 @@
         </table>
         <br>
         <div>
-            <h2>Total Price: ${{formatPrice(this.totalPrice)}}</h2> 
+            <h2>{{ $w('total_price') }}: ${{formatPrice(this.totalPrice)}}</h2> 
         </div>
     </div>
   </div>

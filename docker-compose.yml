@@ -69,6 +69,17 @@ services:
       - 9003:9003
     networks:
       - backend
+  localizationservice:
+    image: localizationservice
+    hostname: localizationservice
+    container_name: bookshop_localizationservice
+    build:
+      context: ./localization-ms
+      dockerfile: Dockerfile
+    ports:
+      - 9004:9004
+    networks:
+      - backend
   ui:
     image: bookshopui
     hostname: bookshopui

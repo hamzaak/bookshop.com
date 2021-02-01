@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: localizationservice
+spec:
+  clusterIP: None
+  selector:
+    run: localizationservice
+  ports:
+    - port: 9004
+      targetPort: 9004

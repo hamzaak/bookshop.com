@@ -6,8 +6,8 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bookshop.shoppingcartms.api.IAccountServiceClient;
-import com.bookshop.shoppingcartms.api.IProductServiceClient;
+import com.bookshop.shoppingcartms.client.IAccountServiceClient;
+import com.bookshop.shoppingcartms.client.IProductServiceClient;
 import com.bookshop.shoppingcartms.dto.AccountDTO;
 import com.bookshop.shoppingcartms.dto.ProductDTO;
 import com.bookshop.shoppingcartms.exception.CustomException;

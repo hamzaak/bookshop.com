@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --mode docker",
-    "build-kube": "vue-cli-service build --mode kube",
+    "lint": "vue-cli-service lint",
     "build-docker": "vue-cli-service build --mode docker",
-    "lint": "vue-cli-service lint"
+    "build-kube": "vue-cli-service build --mode kube"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -16,6 +16,7 @@
     "vuex": "^3.6.2"
   },
   "devDependencies": {
+    "@intlify/vue-i18n-loader": "^1.0.0",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",

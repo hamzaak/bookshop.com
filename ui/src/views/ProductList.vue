@@ -2,7 +2,7 @@
     <div>
         <Navbar />
         <div class="page-content">
-            <h2>Product List</h2>
+            <h2>{{ $w('products') }}</h2>
             <div class="row" v-if="products && products.length">
                 <div class="col-sm-6" v-for="p of products" :key="p.id">
                     <div class="card">
@@ -11,7 +11,7 @@
                             <h5 class="card-title">{{ p.title }}</h5>
                             <p class="card-text">{{p.description}}</p>
                             <button class="btn btn-danger" type="button" @click="buy(p)">
-                                Buy ${{formatPrice(p.price)}}
+                                {{ $w('buy') }} ${{formatPrice(p.price)}}
                             </button>
                         </div>
                     </div>

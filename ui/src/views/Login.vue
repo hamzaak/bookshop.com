@@ -7,14 +7,14 @@
     </div>
       
       <div v-if="!loading">
-        <h2>Sign In</h2>
+        <h2>{{ $w('sign_in') }}</h2>
         <div class="row">
             <div class="col-sm">
                 <input id="txtAccountName" type="input" class="form-control" placeholder="John Doe" v-model="accountName">
             </div>
             <div class="col-sm">
                 <button class="btn btn-danger" type="button" @click="signIn()">
-                    Sign In
+                    {{ $w('sign_in') }}
                 </button>
             </div>
             <div class="col-sm">
@@ -29,6 +29,7 @@
 
 import accountClient from '@/api/accountClient'
 import productClient from '@/api/productClient'
+import i18n from '@/api/i18n'
 
 export default {
   name: 'Login',
@@ -104,11 +105,32 @@ export default {
             title: 'Frankenstein, by Mary Shelley',
             picUrl: 'https://i.dr.com.tr/cache/600x600-0/originals/0001739502001-1.jpg'
         }
+      ],
+      entries: [
+        { lang: 'en', key: 'sign_in',  value: 'Sign in' },
+        { lang: 'en', key: 'sign_out',  value: 'Sign out' },
+        { lang: 'en', key: 'products',  value: 'Products' },
+        { lang: 'en', key: 'buy',  value: 'Buy' },
+        { lang: 'en', key: 'shopping_cart',  value: 'Shopping Cart' },
+        { lang: 'en', key: 'title',  value: 'Title' },
+        { lang: 'en', key: 'description',  value: 'Description' },
+        { lang: 'en', key: 'price',  value: 'Price' },
+        { lang: 'en', key: 'total_price',  value: 'Total Price' },
+        
+        { lang: 'tr', key: 'sign_in', value: 'Giriş yap' },
+        { lang: 'tr', key: 'sign_out',  value: 'Çıkış yap' },
+        { lang: 'tr', key: 'products',  value: 'Ürünler' },
+        { lang: 'tr', key: 'buy',  value: 'Satın al' },
+        { lang: 'tr', key: 'shopping_cart',  value: 'Sepet' },
+        { lang: 'tr', key: 'title',  value: 'Başlık' },
+        { lang: 'tr', key: 'description',  value: 'Tanım' },
+        { lang: 'tr', key: 'price',  value: 'Fiyat' },
+        { lang: 'tr', key: 'total_price',  value: 'Toplam Fiyat' },
       ]
     }
   },
   created() {
-      accountClient.getAll()
+    accountClient.getAll()
         .then(data => {
             // populate all data
             if(data.length == 0) {
@@ -180,11 +202,28 @@ export default {
                     console.log(e)
                 })
         } else {
+            this.populateEntries(0)
+        }
+    },
+    populateEntries(index){
+        if(this.entries.length > index) {
+            i18n.create(this.entries[index])
+                .then(data => {
+                    console.log(JSON.stringify(data))
+                    index++
+                    this.countOfDone++
+                    this.makeProgress()
+                    this.populateEntries(index)
+                })
+                .catch(e => {
+                    console.log(e)
+                })
+        } else {
             this.loading=false
         }
     },
     makeProgress() {
-        this.loadingValue = this.countOfDone / (this.accounts.length + this.products.length) * 100
+        this.loadingValue = this.countOfDone / (this.accounts.length + this.products.length + this.entries.length) * 100
     }
 }
 }

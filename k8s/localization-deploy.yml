@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: localizationservice
+  labels:
+    run: localizationservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: localizationservice
+  template:
+    metadata:
+      labels:
+        name: localizationservice
+        run: localizationservice
+    spec:
+      hostname: localizationservice
+      containers:
+      - name: localizationservice
+        image: hamzaak/localizationservice:latest
+        ports:
+        - containerPort: 9004
+          hostPort: 9004
