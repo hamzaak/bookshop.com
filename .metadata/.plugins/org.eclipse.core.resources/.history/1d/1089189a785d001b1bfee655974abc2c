@@ -1,9 +1,0 @@
-package com.bookshop.accountms.persistence;
-
-import org.springframework.data.mongodb.repository.MongoRepository;
-
-import com.bookshop.accountms.persistence.model.Account;
-
-public interface IAccountRepository extends MongoRepository<Account, String>{
-
-}

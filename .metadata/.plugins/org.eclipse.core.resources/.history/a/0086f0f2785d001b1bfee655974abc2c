@@ -1,5 +1,0 @@
-package com.bookshop.accountms.service;
-
-public interface IAccountService {
-
-}

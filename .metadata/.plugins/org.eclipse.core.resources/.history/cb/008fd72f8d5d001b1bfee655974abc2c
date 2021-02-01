@@ -1,8 +1,0 @@
-package com.bookshop.shoppingcartms.api;
-
-import org.springframework.cloud.openfeign.FeignClient;
-
-@FeignClient(value = "product-ms", url = "http://localhost:9001/api/products")
-public interface IProductServiceClient {
-
-}

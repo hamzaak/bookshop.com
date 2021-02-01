@@ -1,5 +1,0 @@
-package com.bookshop.productms.persistence;
-
-public class MongoConfig {
-
-}

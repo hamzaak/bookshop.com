@@ -1,5 +1,0 @@
-package com.bookshop.productms.api;
-
-public class SpringFoxConfig {
-
-}

@@ -30,4 +30,5 @@ public class LocalizationController {
 	public ResponseEntity<Entry> create(@RequestBody Entry entry) {
 		return ResponseEntity.ok(entryService.create(entry));
 	}
+	
 }

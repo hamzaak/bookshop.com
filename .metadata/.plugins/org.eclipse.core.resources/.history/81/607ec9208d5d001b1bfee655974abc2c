@@ -1,5 +1,0 @@
-package com.bookshop.shoppingcartms.api;
-
-public class IProductServiceClient {
-
-}

@@ -1,6 +1,0 @@
-package com.bookshop.productms.persistence.model;
-
-@Getter
-public class Product {
-
-}
