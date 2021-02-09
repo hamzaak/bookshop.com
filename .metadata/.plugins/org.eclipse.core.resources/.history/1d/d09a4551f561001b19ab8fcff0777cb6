@@ -1,9 +1,0 @@
-com/bookshop/accountms/service/impl/AccountService.class
-com/bookshop/accountms/service/IAccountService.class
-com/bookshop/accountms/persistence/model/Account$AccountBuilder.class
-com/bookshop/accountms/persistence/model/Account.class
-com/bookshop/accountms/api/SwaggerConfig.class
-com/bookshop/accountms/api/AccountController.class
-com/bookshop/accountms/AccountMsApplication.class
-com/bookshop/accountms/api/CorsFilter.class
-com/bookshop/accountms/persistence/IAccountRepository.class
